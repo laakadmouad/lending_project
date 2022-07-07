@@ -32,7 +32,6 @@ def user_input_features():
     loan_amnt=st.sidebar.slider("loan_amnt",0,35000,11000,step=100)
     term=st.sidebar.selectbox("  term ? " ,[36,60])
     int_rate=st.sidebar.slider(" Interest Rate %",5,24,12 ,step=1)/100
-    installment=st.sidebar.slider(" Installement ",0,1300,650,step=10)
     annual_inc=st.sidebar.slider(" Annual Income  ",1900,6000000,3000000,step=100)
     dti= st.sidebar.slider(" Debt-to-Income Ratio ",0,30,13,step=1)
     delinq_2yrs= st.sidebar.slider(" 30+ days delinquecy (last 2 years) ",0,13,5,step=1)
@@ -59,7 +58,6 @@ def user_input_features():
              'loan_amnt': loan_amnt,
              'term': term,
              'int_rate': int_rate,
-             'installment': installment ,
              'annual_inc': annual_inc,
              'dti': dti,
              'delinq_2yrs': delinq_2yrs,
@@ -95,7 +93,7 @@ scaler=pickle.load(open("scaler.pkl",'rb'))
 
 def transform_for_model(df):
     cat_data=df[["sub_grade","home_ownership" ,"verification_status","purpose"]]
-    num_data=df[['loan_amnt', 'term', 'int_rate', 'installment', 'annual_inc', 'dti',
+    num_data=df[['loan_amnt', 'term', 'int_rate', 'annual_inc', 'dti',
        'delinq_2yrs', 'fico_range_high', 'inq_last_6mths', 'open_acc',
        'pub_rec', 'revol_bal', 'revol_util', 'total_acc',
        'total_pymnt', 'total_rec_prncp', 'total_rec_int', 'total_rec_late_fee',
